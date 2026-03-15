@@ -1,8 +1,6 @@
 import math
 import time
-import mujoco_py
-from mujoco_py import load_model_from_path, MjSim, MjViewer
-import glfw  # 用于检查窗口关闭事件
+from mujoco_adapter import load_model_from_path, MjSim, MjViewer
 import os
 
 # 加载模型
@@ -90,7 +88,7 @@ while True:
         count = count + 1
     
     viewer.render()  # 渲染视图
-    if glfw.window_should_close(viewer.window):
-        break  # 如果窗口关闭则退出循环
+    if not viewer.is_running():
+        break
 
     time.sleep(0.01)  # 控制周期
